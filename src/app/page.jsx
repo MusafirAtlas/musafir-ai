@@ -1,65 +1,99 @@
-import Image from "next/image";
+'use client';
+
+import { useEffect, useState, useRef } from 'react';
+import Lenis from 'lenis';
+import Scene3D from '@/components/Scene3D';
+import ParticleField from '@/components/ParticleField';
+import ConnectionNetwork from '@/components/ConnectionNetwork';
+import FloatingElements from '@/components/FloatingElements';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import HeroSection from '@/components/sections/HeroSection';
+import ProblemSection from '@/components/sections/ProblemSection';
+import SolutionSection from '@/components/sections/SolutionSection';
+import HowItWorksSection from '@/components/sections/HowItWorksSection';
+import FeaturesSection from '@/components/sections/FeaturesSection';
+import BenefitsSection from '@/components/sections/BenefitsSection';
+import TrustSection from '@/components/sections/TrustSection';
+import TestimonialsSection from '@/components/sections/TestimonialsSection';
+import CTASection from '@/components/sections/CTASection';
 
 export default function Home() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [networkProgress, setNetworkProgress] = useState(0);
+
+  // Initialize smooth scroll with Lenis
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // Handle scroll progress
+    lenis.on('scroll', ({ scroll, limit }) => {
+      const progress = scroll / limit;
+      setScrollProgress(progress);
+
+      // Network appears in solution section (around 40-60% scroll)
+      if (progress > 0.3 && progress < 0.7) {
+        setNetworkProgress(Math.min(1, (progress - 0.3) / 0.2));
+      }
+    });
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
+  // Track mouse position
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 2 - 1,
+        y: (e.clientY / window.innerHeight) * 2 - 1,
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="relative w-full bg-background min-h-screen">
+      {/* Header */}
+      <Header />
+
+      {/* 3D Background - optimized particle count */}
+      <Scene3D scrollProgress={scrollProgress} mousePosition={mousePosition}>
+        <ParticleField scrollProgress={scrollProgress} count={600} />
+        <FloatingElements scrollProgress={scrollProgress} />
+        <ConnectionNetwork scrollProgress={scrollProgress} sectionProgress={networkProgress} />
+      </Scene3D>
+
+      {/* Content Overlay */}
+      <div className="relative z-10">
+        <HeroSection />
+        <ProblemSection />
+        <SolutionSection />
+        <HowItWorksSection />
+        <FeaturesSection />
+        <BenefitsSection />
+        <TrustSection />
+        <TestimonialsSection />
+        <CTASection />
+      </div>
+
+      {/* Footer */}
+      <Footer />
+    </main>
   );
 }

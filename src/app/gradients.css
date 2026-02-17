@@ -1,0 +1,310 @@
+/* Additional utility styles for landing page */
+
+.gradient-radial-primary {
+    background: radial-gradient(circle at center, rgba(220, 38, 38, 0.1) 0%, transparent 70%);
+}
+
+.gradient-section-divider {
+    background: linear-gradient(to right, transparent 0%, rgba(220, 38, 38, 0.3) 50%, transparent 100%);
+    height: 1px;
+}
+
+.gradient-radial {
+    background: radial-gradient(circle at center, currentColor 0%, transparent 70%);
+}
+
+.bg-gradient-mesh {
+    background:
+        radial-gradient(at 27% 37%, rgba(220, 38, 38, 0.08) 0px, transparent 50%),
+        radial-gradient(at 97% 21%, rgba(220, 38, 38, 0.05) 0px, transparent 50%),
+        radial-gradient(at 52% 99%, rgba(220, 38, 38, 0.06) 0px, transparent 50%),
+        radial-gradient(at 10% 29%, rgba(220, 38, 38, 0.07) 0px, transparent 50%);
+}
+
+/* Proper heart shape with slower random movement (18s cycle) */
+/* Heart uses mathematical curve: two top circles + smooth curves to bottom point */
+
+@keyframes orb-heart-1 {
+
+    0%,
+    20% {
+        /* Left top circle center */
+        transform: translate(-10vw, -14vh) scale(1.3);
+        opacity: 0.85;
+    }
+
+    35% {
+        transform: translate(35vw, -35vh) scale(1.2);
+        opacity: 0.5;
+    }
+
+    50%,
+    75% {
+        /* Back to heart - left top circle */
+        transform: translate(-10vw, -14vh) scale(1.3);
+        opacity: 0.9;
+    }
+
+    90% {
+        transform: translate(-40vw, 28vh) scale(0.9);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translate(-10vw, -14vh) scale(1.3);
+        opacity: 0.85;
+    }
+}
+
+@keyframes orb-heart-2 {
+
+    0%,
+    20% {
+        /* Right top circle center */
+        transform: translate(10vw, -14vh) scale(1.3);
+        opacity: 0.85;
+    }
+
+    35% {
+        transform: translate(-38vw, 32vh) scale(0.8);
+        opacity: 0.6;
+    }
+
+    50%,
+    75% {
+        /* Back to heart - right top circle */
+        transform: translate(10vw, -14vh) scale(1.3);
+        opacity: 0.9;
+    }
+
+    90% {
+        transform: translate(42vw, -30vh) scale(1.3);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translate(10vw, -14vh) scale(1.3);
+        opacity: 0.85;
+    }
+}
+
+@keyframes orb-heart-3 {
+
+    0%,
+    20% {
+        /* Bottom point of heart */
+        transform: translate(0vw, 24vh) scale(1.5);
+        opacity: 0.95;
+    }
+
+    35% {
+        transform: translate(32vw, -38vh) scale(0.9);
+        opacity: 0.5;
+    }
+
+    50%,
+    75% {
+        /* Back to heart - bottom point */
+        transform: translate(0vw, 24vh) scale(1.5);
+        opacity: 1;
+    }
+
+    90% {
+        transform: translate(-35vw, -22vh) scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translate(0vw, 24vh) scale(1.5);
+        opacity: 0.95;
+    }
+}
+
+@keyframes orb-heart-4 {
+
+    0%,
+    20% {
+        /* Left curve - upper middle */
+        transform: translate(-12vw, -5vh) scale(1.2);
+        opacity: 0.8;
+    }
+
+    35% {
+        transform: translate(40vw, 36vh) scale(1.1);
+        opacity: 0.7;
+    }
+
+    50%,
+    75% {
+        /* Back to heart */
+        transform: translate(-12vw, -5vh) scale(1.2);
+        opacity: 0.85;
+    }
+
+    90% {
+        transform: translate(18vw, -40vh) scale(0.8);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translate(-12vw, -5vh) scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes orb-heart-5 {
+
+    0%,
+    20% {
+        /* Right curve - upper middle */
+        transform: translate(12vw, -5vh) scale(1.2);
+        opacity: 0.8;
+    }
+
+    35% {
+        transform: translate(-43vw, -26vh) scale(1.2);
+        opacity: 0.5;
+    }
+
+    50%,
+    75% {
+        /* Back to heart */
+        transform: translate(12vw, -5vh) scale(1.2);
+        opacity: 0.85;
+    }
+
+    90% {
+        transform: translate(-26vw, 38vh) scale(0.9);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translate(12vw, -5vh) scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+@keyframes orb-heart-6 {
+
+    0%,
+    20% {
+        /* Left curve - lower middle */
+        transform: translate(-8vw, 8vh) scale(1.1);
+        opacity: 0.75;
+    }
+
+    35% {
+        transform: translate(36vw, 40vh) scale(1);
+        opacity: 0.6;
+    }
+
+    50%,
+    75% {
+        /* Back to heart */
+        transform: translate(-8vw, 8vh) scale(1.1);
+        opacity: 0.8;
+    }
+
+    90% {
+        transform: translate(-42vw, -16vh) scale(1.2);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translate(-8vw, 8vh) scale(1.1);
+        opacity: 0.75;
+    }
+}
+
+@keyframes orb-heart-7 {
+
+    0%,
+    20% {
+        /* Right curve - lower middle */
+        transform: translate(8vw, 8vh) scale(1.1);
+        opacity: 0.75;
+    }
+
+    35% {
+        transform: translate(44vw, -34vh) scale(0.9);
+        opacity: 0.5;
+    }
+
+    50%,
+    75% {
+        /* Back to heart */
+        transform: translate(8vw, 8vh) scale(1.1);
+        opacity: 0.8;
+    }
+
+    90% {
+        transform: translate(26vw, 42vh) scale(1.3);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translate(8vw, 8vh) scale(1.1);
+        opacity: 0.75;
+    }
+}
+
+@keyframes orb-heart-8 {
+
+    0%,
+    20% {
+        /* Center - dip between circles */
+        transform: translate(0vw, -18vh) scale(0.9);
+        opacity: 0.7;
+    }
+
+    35% {
+        transform: translate(-34vw, 42vh) scale(1.1);
+        opacity: 0.7;
+    }
+
+    50%,
+    75% {
+        /* Back to heart */
+        transform: translate(0vw, -18vh) scale(0.9);
+        opacity: 0.75;
+    }
+
+    90% {
+        transform: translate(-44vw, -38vh) scale(0.8);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translate(0vw, -18vh) scale(0.9);
+        opacity: 0.7;
+    }
+}
+
+/* Base animated gradient */
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.bg-gradient-animated {
+    background: linear-gradient(135deg,
+            rgba(220, 38, 38, 0.08),
+            rgba(239, 68, 68, 0.05),
+            rgba(185, 28, 28, 0.06),
+            rgba(220, 38, 38, 0.04));
+    background-size: 200% 200%;
+    animation: gradient-shift 15s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+    animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
