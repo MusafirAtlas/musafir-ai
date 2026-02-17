@@ -9,11 +9,10 @@ export default function Footer() {
                 <div className="grid md:grid-cols-4 gap-8 mb-8">
                     {/* Brand */}
                     <div>
-                        <div className="flex items-center gap-2 mb-4">
-                            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                                <span className="text-white font-bold text-lg">M</span>
-                            </div>
-                            <span className="font-ahsing text-lg text-foreground">Musafir</span>
+                        <div className="flex items-center gap-2">
+                            <span className="font-ahsing text-2xl text-foreground tracking-[3px]">
+                                <span className="text-primary text-4xl">M</span>usafir
+                            </span>
                         </div>
                         <p className="text-sm text-muted-foreground">
                             AI-powered travel companion for solo explorers

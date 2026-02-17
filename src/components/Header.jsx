@@ -6,14 +6,13 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 glassmorphic border-b border-border/50">
+        <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/10 backdrop-blur-sm">
             <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                 {/* Logo */}
                 <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                        <span className="text-white font-bold text-lg">M</span>
-                    </div>
-                    <span className="font-ahsing text-xl text-foreground">Musafir</span>
+                    <span className="font-ahsing text-2xl text-foreground tracking-[3px]">
+                        <span className="text-primary text-4xl">M</span>usafir
+                    </span>
                 </div>
 
                 {/* Desktop Navigation */}
@@ -24,9 +23,9 @@ export default function Header() {
                     <a href="#trust" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                         Trust & Safety
                     </a>
-                    <a href="#about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {/* <a href="#about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                         About
-                    </a>
+                    </a> */}
                     <button className="px-6 py-2 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/90 transition-all hover:scale-105">
                         Join Waitlist
                     </button>
@@ -57,9 +56,9 @@ export default function Header() {
                         <a href="#trust" className="block text-sm text-muted-foreground hover:text-primary">
                             Trust & Safety
                         </a>
-                        <a href="#about" className="block text-sm text-muted-foreground hover:text-primary">
+                        {/* <a href="#about" className="block text-sm text-muted-foreground hover:text-primary">
                             About
-                        </a>
+                        </a> */}
                         <button className="w-full px-6 py-2 bg-primary text-white text-sm font-medium rounded-full">
                             Join Waitlist
                         </button>
