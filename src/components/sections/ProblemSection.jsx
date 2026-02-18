@@ -34,14 +34,14 @@ export default function ProblemSection() {
     ];
 
     return (
-        <section id="problem" className="relative flex min-h-screen items-center justify-center px-8 py-20">
+        <section id="problem" className="relative flex min-h-screen items-center justify-center px-8 py-16">
             {/* Enhanced gradient backgrounds */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-transparent" />
             <div className="absolute inset-0 bg-gradient-mesh opacity-60" />
 
             <div className="z-10 max-w-6xl w-full">
                 {/* Header */}
-                <div className="text-center mb-16">
+                <div className="text-center mb-10">
                     <div className="inline-block mb-4">
                         <span className="px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full border border-primary/20">
                             The Problem
@@ -56,13 +56,13 @@ export default function ProblemSection() {
                             <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
                         </span>
                     </h2>
-                    <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+                    <p className="font-bricolage text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
                         Solo travelers face a broken ecosystem that wasn't built for them
                     </p>
                 </div>
 
                 {/* Problem Cards Grid */}
-                <div className="grid sm:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-2 gap-4">
                     {problems.map((problem, index) => (
                         <div
                             key={index}
@@ -71,7 +71,7 @@ export default function ProblemSection() {
                             className="relative group"
                         >
                             {/* Card */}
-                            <div className={`relative glassmorphic rounded-2xl p-8 transition-all duration-500 cursor-pointer h-full ${hoveredIndex === index ? 'scale-105 shadow-2xl shadow-primary/20' : ''
+                            <div className={`relative glassmorphic rounded-2xl p-6 transition-all duration-500 cursor-pointer h-full ${hoveredIndex === index ? 'scale-105 shadow-2xl shadow-primary/20' : ''
                                 }`}>
                                 {/* Gradient overlay on hover */}
                                 <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${problem.color} opacity-0 transition-opacity duration-500 ${hoveredIndex === index ? 'opacity-100' : ''
@@ -86,12 +86,12 @@ export default function ProblemSection() {
                                     </div>
 
                                     {/* Title */}
-                                    <h3 className="font-ahsing text-xl sm:text-2xl mb-3 text-foreground">
+                                    <h3 className="font-bricolage font-bold text-xl sm:text-2xl mb-3 text-foreground">
                                         {problem.title}
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                                    <p className="font-bricolage text-sm sm:text-base text-muted-foreground leading-relaxed">
                                         {problem.description}
                                     </p>
 
@@ -112,9 +112,6 @@ export default function ProblemSection() {
                     </p>
                 </div>
             </div>
-
-            {/* Section divider */}
-            <div className="absolute bottom-0 left-0 right-0 gradient-section-divider" />
         </section>
     );
 }

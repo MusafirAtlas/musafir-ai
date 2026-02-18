@@ -14,10 +14,24 @@ const geistMono = Geist_Mono({
 });
 
 const ahsing = localFont({
-  src: "./fonts/Ahsing/ahsing-regular.otf",
+  src: "./fonts/Ahsing/Ahsing-Regular.otf",
   variable: "--font-ahsing",
   weight: "400",
 });
+
+const bricolage = localFont({
+  src: [
+    { path: "./fonts/BricolageGrotesque/BricolageGrotesque-ExtraLight.ttf", weight: "200" },
+    { path: "./fonts/BricolageGrotesque/BricolageGrotesque-Light.ttf", weight: "300" },
+    { path: "./fonts/BricolageGrotesque/BricolageGrotesque-Regular.ttf", weight: "400" },
+    { path: "./fonts/BricolageGrotesque/BricolageGrotesque-Medium.ttf", weight: "500" },
+    { path: "./fonts/BricolageGrotesque/BricolageGrotesque-SemiBold.ttf", weight: "600" },
+    { path: "./fonts/BricolageGrotesque/BricolageGrotesque-Bold.ttf", weight: "700" },
+    { path: "./fonts/BricolageGrotesque/BricolageGrotesque-ExtraBold.ttf", weight: "800" },
+  ],
+  variable: "--font-bricolage",
+});
+
 
 export const metadata = {
   title: "Musafir",
@@ -28,7 +42,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${ahsing.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ahsing.variable} ${bricolage.variable} antialiased`}
       >
         {children}
       </body>

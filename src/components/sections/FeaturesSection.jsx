@@ -3,72 +3,86 @@
 import { useState } from 'react';
 import { Map, Handshake, Zap } from 'lucide-react';
 
-const FEATURE_ICONS = [Map, Handshake, Zap];
+const features = [
+    {
+        title: "AI Itinerary Engine",
+        description: "Personalized travel plans that adapt in real-time to your preferences and circumstances.",
+        Icon: Map,
+        tag: "Powered by AI"
+    },
+    {
+        title: "Social Matching",
+        description: "Connect with verified travelers who share your interests, pace, and destination.",
+        Icon: Handshake,
+        tag: "Verified Profiles"
+    },
+    {
+        title: "Live Coordination",
+        description: "Seamlessly sync plans, split costs, and navigate together—all in one place.",
+        Icon: Zap,
+        tag: "Real-time"
+    }
+];
 
 export default function FeaturesSection() {
     const [activeFeature, setActiveFeature] = useState(null);
 
-    const features = [
-        {
-            title: "AI Itinerary Engine",
-            description: "Personalized travel plans that adapt in real-time to your preferences and circumstances.",
-            Icon: Map
-        },
-        {
-            title: "Social Matching",
-            description: "Connect with verified travelers who share your interests, pace, and destination.",
-            Icon: Handshake
-        },
-        {
-            title: "Live Coordination",
-            description: "Seamlessly sync plans, split costs, and navigate together—all in one place.",
-            Icon: Zap
-        }
-    ];
-
     return (
-        <section id="features" className="relative flex min-h-screen items-center justify-center px-8 py-20">
-            {/* Gradient backgrounds */}
+        <section id="features" className="relative flex min-h-screen items-center justify-center px-8 py-16">
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-transparent to-primary/10" />
-            <div className="absolute top-1/4 right-0 w-96 h-96 gradient-radial-primary blur-3xl opacity-30" />
 
-            <div className="z-10 max-w-6xl w-full">
-                <h2 className="font-ahsing text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-12 text-foreground text-center leading-tight">
-                    Intelligent <span className="text-primary">Orchestration</span>
-                </h2>
+            <div className="z-10 max-w-5xl w-full">
+                <div className="mb-12">
+                    <h2 className="font-ahsing text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight">
+                        Intelligent <span className="text-primary">Orchestration</span>
+                    </h2>
+                    <p className="font-bricolage text-base sm:text-lg text-muted-foreground mt-4 max-w-xl">
+                        Three core systems working in harmony to make every journey exceptional.
+                    </p>
+                </div>
 
-                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+                {/* Open list layout — no cards */}
+                <div className="space-y-0 divide-y divide-border/30">
                     {features.map((feature, i) => (
                         <div
                             key={i}
                             onMouseEnter={() => setActiveFeature(i)}
                             onMouseLeave={() => setActiveFeature(null)}
-                            className={`glassmorphic rounded-2xl p-6 md:p-8 transition-all duration-500 cursor-pointer ${activeFeature === i
-                                    ? 'scale-105 shadow-2xl shadow-primary/20 border-primary/30'
-                                    : 'hover:scale-102'
-                                }`}
+                            className={`flex items-start gap-6 py-8 transition-all duration-300 cursor-pointer group ${activeFeature === i ? 'pl-2' : ''}`}
                         >
-                            <div
-                                className="mb-3 text-primary transition-transform duration-300"
-                                style={{
-                                    transform: activeFeature === i ? 'scale(1.2) rotate(10deg)' : 'scale(1)'
-                                }}
-                            >
-                                <feature.Icon size={36} strokeWidth={1.5} />
+                            {/* Number */}
+                            <span className="font-ahsing text-4xl text-primary/20 w-10 flex-shrink-0 leading-none mt-1 group-hover:text-primary/40 transition-colors duration-300">
+                                0{i + 1}
+                            </span>
+
+                            {/* Icon */}
+                            <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${activeFeature === i ? 'bg-primary text-white' : 'bg-primary/10 text-primary'}`}>
+                                <feature.Icon size={18} strokeWidth={1.5} />
                             </div>
-                            <h3 className="font-ahsing text-lg sm:text-xl mb-3 text-foreground">
-                                {feature.title}
-                            </h3>
-                            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed font-normal">
-                                {feature.description}
-                            </p>
+
+                            {/* Text */}
+                            <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-3 mb-1">
+                                    <h3 className="font-bricolage font-bold text-lg sm:text-xl text-foreground">
+                                        {feature.title}
+                                    </h3>
+                                    <span className="font-bricolage text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full hidden sm:inline">
+                                        {feature.tag}
+                                    </span>
+                                </div>
+                                <p className="font-bricolage text-sm text-muted-foreground leading-relaxed">
+                                    {feature.description}
+                                </p>
+                            </div>
+
+                            {/* Arrow */}
+                            <span className={`text-primary/30 text-xl flex-shrink-0 mt-1 transition-all duration-300 ${activeFeature === i ? 'text-primary translate-x-1' : ''}`}>
+                                →
+                            </span>
                         </div>
                     ))}
                 </div>
             </div>
-
-            {/* Section divider */}
-            <div className="absolute bottom-0 left-0 right-0 gradient-section-divider" />
         </section>
     );
 }

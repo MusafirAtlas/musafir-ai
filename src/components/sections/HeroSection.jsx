@@ -86,7 +86,7 @@ export default function HeroSection() {
             Connect Together.
           </span>
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto font-normal leading-relaxed">
+        <p className="font-bricolage text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
           AI-powered travel companion for solo explorers seeking authentic
           connections
         </p>

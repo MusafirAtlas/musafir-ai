@@ -1,82 +1,53 @@
 'use client';
 
-import { useState } from 'react';
+const benefits = [
+    { title: "Save Time", stat: "10x", description: "Faster planning with AI" },
+    { title: "Save Money", stat: "40%", description: "Average cost savings" },
+    { title: "Stay Safe", stat: "100%", description: "Verified travelers only" },
+    { title: "Make Friends", stat: "∞", description: "Lifelong connections" },
+];
 
 export default function BenefitsSection() {
-    const [hoveredBenefit, setHoveredBenefit] = useState(null);
-
-    const benefits = [
-        {
-            title: "Save Time",
-            stat: "10x",
-            description: "Faster planning with AI-powered recommendations",
-            gradient: "from-red-500/20 to-orange-500/20"
-        },
-        {
-            title: "Save Money",
-            stat: "40%",
-            description: "Average savings through smart cost-splitting",
-            gradient: "from-primary/20 to-pink-500/20"
-        },
-        {
-            title: "Stay Safe",
-            stat: "100%",
-            description: "Verified travelers with background checks",
-            gradient: "from-purple-500/20 to-primary/20"
-        },
-        {
-            title: "Make Friends",
-            stat: "∞",
-            description: "Lifelong connections with like-minded explorers",
-            gradient: "from-primary/20 to-red-600/20"
-        }
-    ];
-
     return (
-        <section id="benefits" className="relative flex min-h-screen items-center justify-center px-8 py-20">
-            {/* Multi-layer gradient background */}
+        <section id="benefits" className="relative flex min-h-screen items-center justify-center px-8 py-16">
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 via-background to-primary/5" />
-            <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient-radial from-primary/10 to-transparent blur-3xl" />
-            <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient-radial from-primary/10 to-transparent blur-3xl" />
 
-            <div className="z-10 max-w-6xl w-full">
-                <h2 className="font-ahsing text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 text-foreground text-center leading-tight">
-                    Why Choose <span className="text-primary">Musafir</span>
-                </h2>
-                <p className="text-center text-base sm:text-lg text-muted-foreground mb-16 max-w-2xl mx-auto">
-                    Experience the benefits that thousands of solo travelers are already enjoying
-                </p>
+            <div className="z-10 max-w-5xl w-full">
+                <div className="mb-12">
+                    <h2 className="font-ahsing text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight">
+                        Why Choose <span className="text-primary">Musafir</span>
+                    </h2>
+                    <p className="font-bricolage text-base sm:text-lg text-muted-foreground mt-4 max-w-xl">
+                        Experience the benefits that thousands of solo travelers are already enjoying.
+                    </p>
+                </div>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Stat row — no cards, just clean numbers */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border/20 rounded-2xl overflow-hidden mb-12">
                     {benefits.map((benefit, i) => (
                         <div
                             key={i}
-                            onMouseEnter={() => setHoveredBenefit(i)}
-                            onMouseLeave={() => setHoveredBenefit(null)}
-                            className="relative glassmorphic rounded-2xl p-6 text-center transition-all duration-500 cursor-pointer hover:scale-105 overflow-hidden"
+                            className="bg-background/40 backdrop-blur-sm px-6 py-8 hover:bg-primary/5 transition-colors duration-300 group"
                         >
-                            {/* Animated gradient background */}
-                            <div className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 transition-opacity duration-500 ${hoveredBenefit === i ? 'opacity-100' : ''
-                                }`} />
-
-                            <div className="relative z-10">
-                                <div className="text-5xl font-ahsing text-primary mb-2">
-                                    {benefit.stat}
-                                </div>
-                                <h3 className="font-ahsing text-lg sm:text-xl mb-2 text-foreground">
-                                    {benefit.title}
-                                </h3>
-                                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                                    {benefit.description}
-                                </p>
+                            <div className="font-ahsing text-4xl sm:text-5xl text-primary mb-1 group-hover:scale-105 transition-transform duration-300 origin-left">
+                                {benefit.stat}
                             </div>
+                            <div className="font-bricolage font-bold text-sm text-foreground mb-1">{benefit.title}</div>
+                            <div className="font-bricolage text-xs text-muted-foreground">{benefit.description}</div>
                         </div>
                     ))}
                 </div>
-            </div>
 
-            {/* Section divider */}
-            <div className="absolute bottom-0 left-0 right-0 gradient-section-divider" />
+                {/* Supporting copy */}
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
+                    <p className="font-bricolage text-sm text-muted-foreground leading-relaxed max-w-sm">
+                        Musafir isn't just an app — it's a movement toward more connected, more meaningful travel experiences for solo explorers worldwide.
+                    </p>
+                    <p className="font-bricolage text-sm text-muted-foreground leading-relaxed max-w-sm">
+                        From AI-powered planning to real human connections, every feature is designed to make your journey safer, richer, and more memorable.
+                    </p>
+                </div>
+            </div>
         </section>
     );
 }
