@@ -1,31 +1,32 @@
 'use client';
 
 import { useState } from 'react';
+import { Map, AlertTriangle, Palmtree, UserX, Lightbulb } from 'lucide-react';
 
 export default function ProblemSection() {
     const [hoveredIndex, setHoveredIndex] = useState(null);
 
     const problems = [
         {
-            icon: "🗺️",
+            Icon: Map,
             title: "Fragmented Planning",
             description: "Solo travelers juggle 10+ apps and platforms just to plan a single trip. Exhausting research, disconnected tools, no single source of truth.",
             color: "from-red-500/10 to-orange-500/10"
         },
         {
-            icon: "⚠️",
+            Icon: AlertTriangle,
             title: "Safety Concerns",
             description: "Traveling alone means constant vigilance. Meeting strangers feels risky. No verification, no trust layer, no peace of mind.",
             color: "from-primary/10 to-pink-500/10"
         },
         {
-            icon: "🏝️",
+            Icon: Palmtree,
             title: "Missing Authenticity",
             description: "Tourist traps dominate search results. Local gems remain hidden. Guidebooks are generic, social media is curated lies.",
             color: "from-purple-500/10 to-primary/10"
         },
         {
-            icon: "😔",
+            Icon: UserX,
             title: "Isolated Experience",
             description: "The journey begins alone—and often stays that way. Shared moments become solo photos. Adventures lack the magic of community.",
             color: "from-primary/10 to-red-600/10"
@@ -79,9 +80,9 @@ export default function ProblemSection() {
                                 {/* Content */}
                                 <div className="relative z-10">
                                     {/* Icon */}
-                                    <div className={`text-5xl mb-4 transition-all duration-300 ${hoveredIndex === index ? 'scale-110 rotate-6' : ''
+                                    <div className={`text-primary mb-4 transition-all duration-300 ${hoveredIndex === index ? 'scale-110 rotate-6' : ''
                                         }`}>
-                                        {problem.icon}
+                                        <problem.Icon size={44} strokeWidth={1.5} />
                                     </div>
 
                                     {/* Title */}
@@ -105,8 +106,9 @@ export default function ProblemSection() {
 
                 {/* Bottom insight */}
                 <div className="mt-12 text-center">
-                    <p className="text-sm sm:text-base text-muted-foreground italic">
-                        💡 These aren't just inconveniences—they're barriers to the transformative experiences that make travel worthwhile
+                    <p className="flex items-center justify-center gap-2 text-sm sm:text-base text-muted-foreground italic">
+                        <Lightbulb size={16} className="text-primary flex-shrink-0" />
+                        These aren't just inconveniences—they're barriers to the transformative experiences that make travel worthwhile
                     </p>
                 </div>
             </div>

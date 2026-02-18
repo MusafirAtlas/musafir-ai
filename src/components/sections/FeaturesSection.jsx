@@ -1,6 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { Map, Handshake, Zap } from 'lucide-react';
+
+const FEATURE_ICONS = [Map, Handshake, Zap];
 
 export default function FeaturesSection() {
     const [activeFeature, setActiveFeature] = useState(null);
@@ -9,17 +12,17 @@ export default function FeaturesSection() {
         {
             title: "AI Itinerary Engine",
             description: "Personalized travel plans that adapt in real-time to your preferences and circumstances.",
-            icon: "🗺️"
+            Icon: Map
         },
         {
             title: "Social Matching",
             description: "Connect with verified travelers who share your interests, pace, and destination.",
-            icon: "🤝"
+            Icon: Handshake
         },
         {
             title: "Live Coordination",
             description: "Seamlessly sync plans, split costs, and navigate together—all in one place.",
-            icon: "⚡"
+            Icon: Zap
         }
     ];
 
@@ -45,10 +48,13 @@ export default function FeaturesSection() {
                                     : 'hover:scale-102'
                                 }`}
                         >
-                            <div className="text-4xl mb-3 transition-transform duration-300" style={{
-                                transform: activeFeature === i ? 'scale(1.2) rotate(10deg)' : 'scale(1)'
-                            }}>
-                                {feature.icon}
+                            <div
+                                className="mb-3 text-primary transition-transform duration-300"
+                                style={{
+                                    transform: activeFeature === i ? 'scale(1.2) rotate(10deg)' : 'scale(1)'
+                                }}
+                            >
+                                <feature.Icon size={36} strokeWidth={1.5} />
                             </div>
                             <h3 className="font-ahsing text-lg sm:text-xl mb-3 text-foreground">
                                 {feature.title}

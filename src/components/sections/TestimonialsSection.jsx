@@ -1,6 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import { User, MapPin } from 'lucide-react';
+
+// Distinct accent colors per testimonial avatar
+const AVATAR_COLORS = [
+    'bg-blue-500/20 text-blue-400 border-blue-500/30',
+    'bg-amber-500/20 text-amber-400 border-amber-500/30',
+    'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+];
 
 export default function TestimonialsSection() {
     const [activeTestimonial, setActiveTestimonial] = useState(1);
@@ -11,21 +19,18 @@ export default function TestimonialsSection() {
             role: "Digital Nomad",
             location: "Bali, Indonesia",
             quote: "Musafir transformed my solo trip to Japan. I met incredible people, discovered hidden gems, and felt safe every step of the way.",
-            avatar: "👩‍💼"
         },
         {
             name: "Marcus Rivera",
             role: "Adventure Photographer",
             location: "Patagonia, Chile",
             quote: "The AI itinerary was spot-on, but the real magic was the community. I found my travel tribe and we're planning our next adventure together.",
-            avatar: "📸"
         },
         {
             name: "Priya Sharma",
             role: "Software Engineer",
             location: "Iceland",
             quote: "As a solo female traveler, safety is everything. The verification system gave me peace of mind, and I made friends for life.",
-            avatar: "👩‍💻"
         }
     ];
 
@@ -59,7 +64,11 @@ export default function TestimonialsSection() {
                                 }`} />
 
                             <div className="relative z-10">
-                                <div className="text-5xl mb-4">{testimonial.avatar}</div>
+                                {/* Avatar icon */}
+                                <div className={`w-14 h-14 rounded-full border flex items-center justify-center mb-4 ${AVATAR_COLORS[i]}`}>
+                                    <User size={26} strokeWidth={1.5} />
+                                </div>
+
                                 <p className="text-sm sm:text-base text-muted-foreground italic mb-6 leading-relaxed">
                                     "{testimonial.quote}"
                                 </p>
@@ -70,8 +79,9 @@ export default function TestimonialsSection() {
                                     <div className="text-xs sm:text-sm text-muted-foreground">
                                         {testimonial.role}
                                     </div>
-                                    <div className="text-xs text-primary mt-1">
-                                        📍 {testimonial.location}
+                                    <div className="flex items-center gap-1 text-xs text-primary mt-1">
+                                        <MapPin size={12} />
+                                        {testimonial.location}
                                     </div>
                                 </div>
                             </div>

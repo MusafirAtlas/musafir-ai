@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Sparkles, Globe, Rocket } from 'lucide-react';
 
 export default function HowItWorksSection() {
     const [activeStep, setActiveStep] = useState(0);
@@ -10,19 +11,19 @@ export default function HowItWorksSection() {
             number: "01",
             title: "Share Your Vision",
             description: "Tell us where you want to go, your interests, and travel style. Our AI analyzes thousands of experiences to craft your perfect itinerary.",
-            icon: "✨"
+            Icon: Sparkles
         },
         {
             number: "02",
             title: "Meet Your Tribe",
             description: "Get matched with verified travelers who share your destination and vibe. Every connection is background-checked and trust-scored.",
-            icon: "🌍"
+            Icon: Globe
         },
         {
             number: "03",
             title: "Journey Together",
             description: "Coordinate in real-time, split costs seamlessly, and explore with confidence. Your adventure, amplified by community.",
-            icon: "🚀"
+            Icon: Rocket
         }
     ];
 
@@ -57,7 +58,9 @@ export default function HowItWorksSection() {
 
                             <div className="relative z-10">
                                 <div className="flex items-center gap-4 mb-4">
-                                    <span className="text-5xl">{step.icon}</span>
+                                    <span className="text-primary">
+                                        <step.Icon size={40} strokeWidth={1.5} />
+                                    </span>
                                     <span className="font-ahsing text-4xl text-primary/30">{step.number}</span>
                                 </div>
                                 <h3 className="font-ahsing text-xl sm:text-2xl mb-3 text-foreground">

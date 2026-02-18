@@ -1,10 +1,12 @@
 'use client';
 
+import { BadgeCheck, ShieldCheck, Star } from 'lucide-react';
+
 export default function TrustSection() {
     const badges = [
-        { label: "ID Verification", icon: "🆔" },
-        { label: "Background Check", icon: "✓" },
-        { label: "Trust Score", icon: "⭐" }
+        { label: "ID Verification", Icon: BadgeCheck },
+        { label: "Background Check", Icon: ShieldCheck },
+        { label: "Trust Score", Icon: Star }
     ];
 
     return (
@@ -29,9 +31,9 @@ export default function TrustSection() {
                             {badges.map((badge, index) => (
                                 <span
                                     key={index}
-                                    className="px-3 py-2 bg-primary/20 rounded-full border border-primary/30 hover:bg-primary/30 hover:scale-110 transition-all duration-300 cursor-pointer text-foreground font-medium"
+                                    className="flex items-center gap-1.5 px-3 py-2 bg-primary/20 rounded-full border border-primary/30 hover:bg-primary/30 hover:scale-110 transition-all duration-300 cursor-pointer text-foreground font-medium"
                                 >
-                                    <span className="mr-1">{badge.icon}</span>
+                                    <badge.Icon size={14} className="text-primary" />
                                     {badge.label}
                                 </span>
                             ))}
