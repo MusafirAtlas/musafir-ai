@@ -1,7 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { User, MapPin, Star } from 'lucide-react';
+
+const STEP_DURATION = 4000;
 
 const AVATAR_COLORS = [
     'bg-blue-500/20 text-blue-400 border-blue-500/30',
@@ -32,7 +34,36 @@ const testimonials = [
 
 export default function TestimonialsSection() {
     const [active, setActive] = useState(0);
+    const [progress, setProgress] = useState(0);
+    const timerRef = useRef(null);
+    const progressRef = useRef(null);
     const featured = testimonials[active];
+
+    useEffect(() => {
+        setProgress(0);
+        const start = Date.now();
+
+        progressRef.current = setInterval(() => {
+            const elapsed = Date.now() - start;
+            setProgress(Math.min((elapsed / STEP_DURATION) * 100, 100));
+        }, 30);
+
+        timerRef.current = setTimeout(() => {
+            setActive(prev => (prev + 1) % testimonials.length);
+        }, STEP_DURATION);
+
+        return () => {
+            clearTimeout(timerRef.current);
+            clearInterval(progressRef.current);
+        };
+    }, [active]);
+
+    const handleSelect = (i) => {
+        clearTimeout(timerRef.current);
+        clearInterval(progressRef.current);
+        setProgress(0);
+        setActive(i);
+    };
 
     return (
         <section id="testimonials" className="relative flex min-h-screen items-center justify-center px-8 py-16">
@@ -88,18 +119,27 @@ export default function TestimonialsSection() {
                         {testimonials.map((t, i) => (
                             <button
                                 key={i}
-                                onClick={() => setActive(i)}
+                                onClick={() => handleSelect(i)}
                                 className={`w-full text-left px-4 py-4 rounded-xl transition-all duration-300 group ${active === i ? 'bg-primary/10 border border-primary/20' : 'hover:bg-primary/5 border border-transparent'}`}
                             >
                                 <div className="flex items-center gap-3">
                                     <div className={`w-8 h-8 rounded-full border flex items-center justify-center flex-shrink-0 transition-all duration-300 ${AVATAR_COLORS[i]} ${active === i ? 'scale-110' : ''}`}>
                                         <User size={14} strokeWidth={1.5} />
                                     </div>
-                                    <div>
+                                    <div className="flex-1 min-w-0">
                                         <div className={`font-bricolage font-semibold text-sm transition-colors duration-300 ${active === i ? 'text-primary' : 'text-foreground'}`}>
                                             {t.name}
                                         </div>
                                         <div className="font-bricolage text-xs text-muted-foreground">{t.role}</div>
+                                        {/* Progress bar for active item */}
+                                        {active === i && (
+                                            <div className="mt-2 h-0.5 w-full rounded-full bg-primary/15 overflow-hidden">
+                                                <div
+                                                    className="h-full rounded-full bg-primary transition-none"
+                                                    style={{ width: `${progress}%` }}
+                                                />
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </button>
