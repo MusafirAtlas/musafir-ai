@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 const ahsing = localFont({
-  src: [{ path: "./fonts/Ahsing/Ahsing-Regular.otf", weight: "400", style: "normal" }],
+  src: "./fonts/Ahsing/Ahsing-Regular.otf",
   variable: "--font-ahsing",
   weight: "400",
 });
