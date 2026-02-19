@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import { ModeToggle } from '@/components/ThemeToggle';
 
 const NAV_LINKS = [
     { label: "Problem", href: "#problem" },
@@ -80,6 +81,7 @@ export default function Header() {
 
                         {/* Right: CTA */}
                         <div className="hidden md:flex items-center gap-2">
+                            <ModeToggle />
                             <a
                                 href="#benefits"
                                 className="group flex items-center gap-1.5 px-4 py-2 bg-primary text-white text-xs font-semibold rounded-xl hover:bg-primary/90 transition-all hover:scale-105 hover:shadow-lg hover:shadow-primary/30 active:scale-95"
@@ -120,7 +122,10 @@ export default function Header() {
                                     </a>
                                 );
                             })}
-                            <div className="pt-2">
+                            <div className="pt-2 flex flex-col gap-2">
+                                <div className="flex justify-end px-2">
+                                    <ModeToggle />
+                                </div>
                                 <a
                                     href="#benefits"
                                     onClick={() => setIsMenuOpen(false)}
